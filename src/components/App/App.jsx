@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Application } from './App.styled';
 import { PageTitle } from 'components/PageTitle';
 import { Footer } from 'components/Footer/Footer';
@@ -14,8 +14,13 @@ export const App = () => {
     () => JSON.parse(window.localStorage.getItem(LOCALSTORAGE_KEY)) ?? []
   );
   const [filter, setFilter] = useState('');
+  const isInitialRender = useRef(true);
 
   useEffect(() => {
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
     try {
       window.localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(contacts));
     } catch (error) {
