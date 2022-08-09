@@ -48,7 +48,7 @@ export const App = () => {
           contact.name
             .toLowerCase()
             .split(' ')
-            .some(element => element.startsWith(normalizedFilter))
+            .some(element => element.includes(normalizedFilter))
         )
       : contacts;
   };
