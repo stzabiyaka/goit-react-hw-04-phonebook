@@ -34,7 +34,7 @@ export const AddContactForm = ({ onSubmit, checkContact }) => {
   const handleSubmit = event => {
     event.preventDefault();
     if (checkContact(name)) {
-      onSubmit({ id: nanoid(), name: name, number: number });
+      onSubmit({ id: nanoid(), name, number });
       reset();
     }
   };
